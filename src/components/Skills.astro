@@ -1,0 +1,123 @@
+---
+const skills = [
+    {
+        icon: "💻",
+        title: "Web Development",
+        description:
+            "현대적인 웹 애플리케이션 개발과 프론트엔드 기술에 대한 경험을 공유합니다.",
+    },
+    {
+        icon: "🎨",
+        title: "UI/UX Design",
+        description:
+            "사용자 경험을 중시하는 인터페이스 디자인과 개발 방법론을 다룹니다.",
+    },
+    {
+        icon: "⚡",
+        title: "Performance",
+        description:
+            "웹 성능 최적화와 효율적인 코드 작성에 대한 인사이트를 제공합니다.",
+    },
+    {
+        icon: "🔧",
+        title: "Development Tools",
+        description: "개발 생산성을 높이는 도구와 워크플로우를 소개합니다.",
+    },
+];
+---
+
+<section class="skills-section" id="skills">
+    <div class="section-container">
+        <h2 class="section-title">What I Do</h2>
+        <div class="skills-grid">
+            {
+                skills.map((skill) => (
+                    <div class="skill-card">
+                        <div class="skill-icon">{skill.icon}</div>
+                        <h3 class="skill-title">{skill.title}</h3>
+                        <p class="skill-description">{skill.description}</p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .skills-section {
+        padding: 4rem 1rem;
+    }
+
+    .section-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 3rem;
+        color: var(--text-color);
+    }
+
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .skill-card {
+        padding: 2rem;
+        background-color: var(--bg-color);
+        border: 2px solid var(--border-color);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+
+    .skill-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border-color: var(--accent-color, #3b82f6);
+    }
+
+    .skill-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .skill-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        color: var(--text-color);
+    }
+
+    .skill-description {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: var(--text-color);
+        opacity: 0.8;
+        margin: 0;
+    }
+
+    @media (max-width: 720px) {
+        .skills-section {
+            padding: 3rem 1rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+        }
+
+        .skills-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            padding: 1.5rem;
+        }
+    }
+</style>

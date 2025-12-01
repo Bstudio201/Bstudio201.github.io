@@ -7,6 +7,7 @@
 
 :root {
 	--bg-color: #ffffff;
+	--bg-secondary: #f8fafc;
 	--text-color: #1a1a1a;
 	--accent-color: #3b82f6;
 	--border-color: #e5e7eb;
@@ -16,6 +17,7 @@
 
 .dark {
 	--bg-color: #0f172a;
+	--bg-secondary: #1e293b;
 	--text-color: #f1f5f9;
 	--accent-color: #60a5fa;
 	--border-color: #334155;
@@ -60,9 +62,9 @@ body {
 
 main {
 	width: 100%;
-	max-width: 1024px;
+	max-width: 100%;
 	margin: 0 auto;
-	padding: 3em 1em;
+	padding: 0;
 	flex: 1;
 }
 
