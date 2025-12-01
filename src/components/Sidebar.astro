@@ -1,0 +1,56 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const tags = [...new Set(posts.map((post) => post.data.tags).flat().filter(Boolean))];
+---
+
+<aside class="sidebar">
+	<h3>Categories</h3>
+	<ul class="tags">
+		{tags.map((tag) => (
+			<li><a href={`/tags/${tag}`}>{tag}</a></li>
+		))}
+	</ul>
+</aside>
+
+<style>
+	.sidebar {
+		width: 100%;
+		padding: 1.5em;
+		background: var(--code-bg);
+		border-radius: 12px;
+		height: fit-content;
+	}
+	
+	h3 {
+		margin-top: 0;
+		margin-bottom: 1em;
+		font-size: 1.2em;
+		border-bottom: 2px solid var(--border-color);
+		padding-bottom: 0.5em;
+	}
+
+	.tags {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5em;
+	}
+
+	.tags li a {
+		display: block;
+		padding: 0.5em;
+		color: var(--text-color);
+		text-decoration: none;
+		border-radius: 6px;
+		transition: background-color 0.2s ease, color 0.2s ease;
+	}
+
+	.tags li a:hover {
+		background-color: var(--bg-color);
+		color: var(--accent-color);
+	}
+</style>
