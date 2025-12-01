@@ -4,6 +4,14 @@ const {
     title = "Developer",
     description = "안녕하세요.<br/> 개발과 기술에 대한 이야기를 나누는 공간입니다.",
 } = Astro.props;
+
+// 타이핑 애니메이션에 사용할 텍스트 배열
+const typingTexts = [
+    "Developer & Tech Enthusiast",
+    "Web Developer",
+    "Problem Solver",
+    "Lifelong Learner",
+];
 ---
 
 <section class="hero-section">
@@ -12,7 +20,10 @@ const {
             <img src="/duck-profile.jpg" alt="Profile" class="profile-image" />
         </div>
         <h1 class="hero-name">{name}</h1>
-        <p class="hero-title">{title}</p>
+        <p class="hero-title">
+            <span id="typing-text"></span>
+            <span class="cursor">|</span>
+        </p>
         <p class="hero-description" set:html={description} />
 
         <div class="social-links">
@@ -59,9 +70,48 @@ const {
             </a>
         </div>
 
-        <a href="/blog" class="cta-button"> View Blog </a>
+        <a href="/#about" class="cta-button">Learn More</a>
     </div>
 </section>
+
+<script define:vars={{ typingTexts }}>
+    const typingElement = document.getElementById("typing-text");
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100;
+
+    function type() {
+        const currentText = typingTexts[textIndex];
+
+        if (isDeleting) {
+            typingElement.textContent = currentText.substring(0, charIndex - 1);
+            charIndex--;
+            typingSpeed = 50;
+        } else {
+            typingElement.textContent = currentText.substring(0, charIndex + 1);
+            charIndex++;
+            typingSpeed = 100;
+        }
+
+        if (!isDeleting && charIndex === currentText.length) {
+            // 완성된 후 잠시 대기
+            typingSpeed = 2000;
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            textIndex = (textIndex + 1) % typingTexts.length;
+            typingSpeed = 500;
+        }
+
+        setTimeout(type, typingSpeed);
+    }
+
+    // 페이지 로드 후 타이핑 시작
+    document.addEventListener("DOMContentLoaded", () => {
+        setTimeout(type, 500);
+    });
+</script>
 
 <style>
     .hero-section {
@@ -106,6 +156,32 @@ const {
         color: var(--accent-color, #3b82f6);
         margin: 0;
         font-weight: 500;
+        min-height: 1.5em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+    }
+
+    #typing-text {
+        display: inline-block;
+    }
+
+    .cursor {
+        display: inline-block;
+        animation: blink 1s infinite;
+        font-weight: 400;
+    }
+
+    @keyframes blink {
+        0%,
+        50% {
+            opacity: 1;
+        }
+        51%,
+        100% {
+            opacity: 0;
+        }
     }
 
     .hero-description {
