@@ -3,14 +3,18 @@ const today = new Date();
 ---
 
 <footer>
-	&copy; {today.getFullYear()} Blog201. All rights reserved.
+	&copy; {today.getFullYear()} Jonghyeon Baek. All rights reserved.
 </footer>
 <style>
 	footer {
 		padding: 2em 1em 6em 1em;
-		background: linear-gradient(var(--gray-gradient)) no-repeat;
+		background-color: var(--bg-secondary, #f8fafc);
 		color: rgb(var(--gray));
 		text-align: center;
+	}
+
+	.dark footer {
+		background-color: var(--bg-secondary, #1e293b);
 	}
 	.social-links {
 		display: flex;
