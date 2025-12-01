@@ -23,6 +23,17 @@ const skills = [
         title: "Development Tools",
         description: "개발 생산성을 높이는 도구와 워크플로우를 소개합니다.",
     },
+    {
+        icon: "☁️",
+        title: "Cloud & DevOps",
+        description: "클라우드 인프라와 CI/CD 파이프라인 구축 경험을 나눕니다.",
+    },
+    {
+        icon: "🗄️",
+        title: "Database",
+        description:
+            "효율적인 데이터 관리와 데이터베이스 설계 방법을 다룹니다.",
+    },
 ];
 ---
 
@@ -63,7 +74,7 @@ const skills = [
 
     .skills-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
     }
 
@@ -100,6 +111,12 @@ const skills = [
         color: var(--text-color);
         opacity: 0.8;
         margin: 0;
+    }
+
+    @media (max-width: 968px) {
+        .skills-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
 
     @media (max-width: 720px) {
